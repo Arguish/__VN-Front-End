@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import AdminNav from "./components/AdminNav.vue";
 
 export default {
