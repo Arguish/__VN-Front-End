@@ -10,21 +10,31 @@ export default {
     pass2: "",
   }),
   methods: {
-    logHand() {
+    async logHand() {
       if (this.mail === "" || this.pass1 === "") {
         alert("No se pueden dejar campos vacios");
       } else {
-        loggin(this.mail, this.pass1);
+        const canlog = await loggin(this.mail, this.pass1);
+        console.log(canlog);
+        if (canlog) {
+          console.log(canlog);
+          this.goMain();
+        }
       }
     },
-    regHand() {
+    async regHand() {
       if (this.pass1 !== this.pass2) {
         alert("Error pass matching");
       } else if (this.nick === "" || this.mail === "" || this.pass1 === "") {
         alert("No se pueden dejar campos vacios");
       } else {
-        register(this.nick, this.mail, this.pass1);
+        if (await register(this.nick, this.mail, this.pass1)) {
+          this.logHand();
+        }
       }
+    },
+    goMain() {
+      this.$router.push("/Main");
     },
   },
   mounted() {},
