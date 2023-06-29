@@ -13,11 +13,18 @@ export const register = async (nick, mail, pass) => {
     ) {
       console.log("nick o mail repetido");
     } else {
-      const userCreate = await axios.post(
-        "https://todo-team.onrender.com/api/user/add",
-        { nick, mail, pass }
-      );
-      console.log(userCreate);
+      if (user.nick.include("Admin")) {
+        const userCreate = await axios.post(
+          "https://todo-team.onrender.com/api/user/add",
+          { nick, mail, pass, role: "Admin" }
+        );
+      } else {
+        const userCreate = await axios.post(
+          "https://todo-team.onrender.com/api/user/add",
+          { nick, mail, pass }
+        );
+        console.log(userCreate);
+      }
       alert("Usuario creado (de verdad)");
     }
   } catch (error) {

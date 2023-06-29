@@ -82,4 +82,8 @@ export default {
   </div>
 </template>
 
-<style></style>
+<style>
+input {
+  @apply text-black;
+}
+</style>
